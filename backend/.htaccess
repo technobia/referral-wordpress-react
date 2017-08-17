@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /referral/backend/
+    RewriteRule ^(?!wp-admin)$ ../index.php [L]
+    RewriteRule ^(wp-json).*$ index.php [L]
+</IfModule>

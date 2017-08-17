@@ -1,6 +1,5 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /referral/
-    RewriteRule ^backend/*$ admin/
-    RewriteRule ^admin/$ backend/wp-login.php [QSA,L]
+    RedirectMatch /admin(/)? /referral/backend/wp-admin/
 </IfModule>
