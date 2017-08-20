@@ -2,6 +2,7 @@ var webpack  			= require('webpack');
 var path				= require('path');
 var HtmlWebpackPlugin 	= require('html-webpack-plugin');
 var ExtractTextPlugin   = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin 	= require('copy-webpack-plugin');
 
 var webpackConfig = {
 	devtool: 'cheap-module-source-map',
@@ -57,16 +58,12 @@ var webpackConfig = {
 				}
 			},
             {
-                test: /\.scss$/,
+                test: /\.scss|css$/,
                 loader: ExtractTextPlugin.extract('css-loader!sass-loader')
             },
             {
-                test: /\.css/,
-                loader: ExtractTextPlugin.extract('css-loader')
-            },
-            {
-                test: /\.(png|jpg|gif|woff|woff2|eot|ttf|otf|svg)$/,
-                loader: 'file-loader',
+                test: /\.(jpe?g|wav|mp3|png|jpg|gif|woff|woff2|eot|ttf|otf|svg)$/,
+                loader: 'file-loader!url-loader',
             }
 		]
 	},
@@ -87,9 +84,21 @@ var webpackConfig = {
 	        hash: false
 	    }),
 
-        new ExtractTextPlugin('public/style.css', {
+        new ExtractTextPlugin({
+            filename: (getPath) => {
+                return getPath('style/[name].css');
+            },
             allChunks: true
-        }),
+		}),
+
+		new CopyWebpackPlugin([
+            {
+            	from: './src/assets/img/**/*',
+				to: 'img',
+                context: path.join(__dirname, '/'),
+				flatten: true
+			},
+		])
 	]
 };
 
