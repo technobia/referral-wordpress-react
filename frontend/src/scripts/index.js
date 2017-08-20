@@ -1,3 +1,4 @@
+import React                from 'react';
 import {render}             from 'react-dom';
 import DataActions          from 'flux/actions/DataActions.js';
 
@@ -8,7 +9,7 @@ import Header               from 'components/Header.js';
 import '../assets/sass/main.scss';
 
 import {
-    BrowserRouter as Router,
+    BrowserRouter,
     Route,
     Redirect,
     Switch
@@ -22,34 +23,35 @@ class AppInitializer {
         'contact': Contact
     };
 
-    buildRoutes(data){
+    buildRoutes(data) {
         return data.pages.map((page, i) => {
-            return(
+            return (
                 <Route
                     key={i}
                     component={this.templates[page.slug]}
                     path={`/${page.slug}`}
                     exact
-                /> 
+                />
             )
-        })     
+        })
     }
 
     run() {
-        DataActions.getPages((response)=>{
+        DataActions.getPages((response) => {
+            console.log(response);
             render(
-                <Router>
+                <BrowserRouter>
                     <div>
                         <Header />
 
                         <Switch>
-                            <Route path="/" component={ Home } exact />
+                            <Route path="/" component={ Home } exact/>
 
-                            {this.buildRoutes(response)}
-                            <Route render={() => { return <Redirect to="/" /> }} />
-                        </Switch> 
+                            <Route component={Home} path={`/home`} exact/>
+                            <Route render={() => {return <Redirect to="/"/>}}/>
+                        </Switch>
                     </div>
-                </Router>
+                </BrowserRouter>
 
                 , document.getElementById('app')
             );

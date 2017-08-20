@@ -32,7 +32,7 @@ class DataActions {
     // Method for getting Posts data
     getPosts(pages, cb){
         this.api(this.postsEndPoint).then((response)=>{
-            const posts     = response
+            const posts     = response;
             const payload   = { pages, posts };
 
             this.getSuccess(payload); // Pass returned data to the store
