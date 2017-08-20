@@ -3,7 +3,7 @@ var path				= require('path');
 var HtmlWebpackPlugin 	= require('html-webpack-plugin');
 var ExtractTextPlugin   = require('extract-text-webpack-plugin');
 
-module.exports = {	
+var webpackConfig = {
 	devtool: 'cheap-module-source-map',
 	devServer: {
 		historyApiFallback: true, // This will make the server understand "/some-link" routs instead of "/#/some-link"
@@ -59,6 +59,14 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract('css-loader!sass-loader')
+            },
+            {
+                test: /\.css/,
+                loader: ExtractTextPlugin.extract('css-loader')
+            },
+            {
+                test: /\.(png|jpg|gif|woff|woff2|eot|ttf|otf|svg)$/,
+                loader: 'file-loader',
             }
 		]
 	},
@@ -81,6 +89,8 @@ module.exports = {
 
         new ExtractTextPlugin('public/style.css', {
             allChunks: true
-        })
+        }),
 	]
-}
+};
+
+module.exports = webpackConfig;

@@ -5,7 +5,8 @@ import DataActions          from 'flux/actions/DataActions.js';
 import Home                 from 'components/Home.js';
 import About                from 'components/About.js';
 import Contact              from 'components/Contact.js';
-import Header               from 'components/Header.js';
+import NavBar               from 'components/NavBar.js';
+import 'semantic-ui-css/semantic.min.css';
 import '../assets/sass/main.scss';
 
 import {
@@ -42,7 +43,7 @@ class AppInitializer {
             render(
                 <BrowserRouter>
                     <div>
-                        <Header />
+                        <NavBar />
 
                         <Switch>
                             <Route path="/" component={ Home } exact/>
