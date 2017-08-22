@@ -1,4 +1,3 @@
-import React                from 'react';
 import {render}             from 'react-dom';
 import DataActions          from 'flux/actions/DataActions.js';
 
