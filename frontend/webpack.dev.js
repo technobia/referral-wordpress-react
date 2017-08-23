@@ -62,9 +62,14 @@ var webpackConfig = {
                 loader: ExtractTextPlugin.extract('css-loader!sass-loader')
             },
             {
-                test: /\.(jpe?g|wav|mp3|png|jpg|gif|woff|woff2|eot|ttf|otf|svg)$/,
+                test: /\.(jpe?g|wav|mp3|png|jpg|gif|svg)$/,
                 loader: 'file-loader!url-loader',
-            }
+            },
+            { test: /\.otf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/x-font-opentype' },
+            { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+            { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+            { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/octet-stream" },
+            { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
 		]
 	},
 	plugins: [

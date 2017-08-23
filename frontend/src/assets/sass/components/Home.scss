@@ -1,0 +1,35 @@
+#homepage {
+  .slider {
+    .ui.rail {
+      width: auto;
+      right: 0;
+      bottom: 0;
+      top: 0;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(black, 0.5);
+      }
+
+      .ui.image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    > .ui.container {
+      position: relative;
+      z-index: 1;
+
+      i.icon {
+        cursor: pointer;
+      }
+    }
+  }
+}
